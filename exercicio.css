@@ -1,0 +1,100 @@
+#controles ul {
+  list-style-type: none;
+  padding: 0;
+  transform: translateX(-80%);
+}
+
+#controles ul:hover {
+  transform: translateX(0);
+}
+
+/* Exercício 1: Criar uma transição para quando o mouse estiver em cima dos
+ * botões play/stop (para que o elemento se revele lentamente)
+ */
+#controles ul {
+  transition-duration: 0.8s;
+}
+
+/*
+ * Exercício 2: Você deve implementar uma metáfora visual para cada um dos 4
+ * estados dos animais. Algumas *sugestões*:
+ *   - com-fome: animal piscando (opacidade variando)
+ *   - satisfeito: uma borda verde no animal e o animal fica girando de alegria
+ *   - com-raiva: animal fica pulsando
+ *   - atacando: animal dá um salto e cresce, com uma borda vermelha
+ */
+@keyframes piscar {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes baterAsas {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes pulsar {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pular {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.5) translateZ(50px); /* O animal "salta" em direção ao jogador */
+  }
+}
+
+@keyframes girar3d {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(45deg); /* Adiciona um leve giro no eixo Y */
+  }
+}
+
+.com-fome {
+  animation: piscar 1s infinite, girar 2s infinite alternate;
+}
+
+.satisfeito {
+  border: 3px solid green;
+  animation: girar 2s infinite linear, baterAsas 1s infinite alternate;
+}
+
+.com-raiva {
+  animation: pulsar 0.5s infinite;
+}
+.atacando {
+  border: 3px solid red;
+  perspective: 1000px;
+  animation: pular 0.5s forwards, girar3d 1s forwards;
+}
